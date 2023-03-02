@@ -1,6 +1,7 @@
 package process_transaction
 
 import (
+	"fmt"
 	"github.com/codeedu/imersao5-gateway/adapter/broker"
 	"github.com/codeedu/imersao5-gateway/domain/entity"
 	"github.com/codeedu/imersao5-gateway/domain/repository"
@@ -21,6 +22,9 @@ func (p *ProcessTransaction) Execute(input TransactionDtoInput) (TransactionDtoO
 	transaction.ID = input.ID
 	transaction.AccountID = input.AccountID
 	transaction.Amount = input.Amount
+
+	fmt.Println("Execut inputs credit card ....", input.ID)
+
 	cc, invalidCC := entity.NewCreditCard(input.CreditCardNumber, input.CreditCardName, input.CreditCardExpirationMonth, input.CreditCardExpirationYear, input.CreditCardCVV)
 	if invalidCC != nil {
 		return p.rejectTransaction(transaction, invalidCC)
@@ -36,6 +40,7 @@ func (p *ProcessTransaction) Execute(input TransactionDtoInput) (TransactionDtoO
 }
 
 func (p *ProcessTransaction) approveTransaction(input TransactionDtoInput, transaction *entity.Transaction) (TransactionDtoOutput, error) {
+	fmt.Println("Execut insert inputs ....", input.ID)
 	err := p.Repository.Insert(transaction.ID, transaction.AccountID, transaction.Amount, entity.APPROVED, "")
 	if err != nil {
 		panic(err)
@@ -47,6 +52,7 @@ func (p *ProcessTransaction) approveTransaction(input TransactionDtoInput, trans
 		ErrorMessage: "",
 	}
 	err = p.publish(output, []byte(transaction.ID))
+	fmt.Println("Publicado inputs ....", output)
 	if err != nil {
 		panic(err)
 		return TransactionDtoOutput{}, err
@@ -66,6 +72,7 @@ func (p *ProcessTransaction) rejectTransaction(transaction *entity.Transaction, 
 		ErrorMessage: invalidTransaction.Error(),
 	}
 	err = p.publish(output, []byte(transaction.ID))
+	fmt.Println("Error inputs ....", output)
 	if err != nil {
 		panic(err)
 		return TransactionDtoOutput{}, err

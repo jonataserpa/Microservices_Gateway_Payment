@@ -1,12 +1,6 @@
 # Imersão Fullcycle 5 - Gateway de pagamento
 ![Imersão Full Stack && Full Cycle](https://events-fullcycle.s3.amazonaws.com/events-fullcycle/static/site/img/grupo_4417.png)
 
-## Sobre o repositório
-Esse repositório contém todo código utilizado durante as aulas para referência.
-
-Faça seu fork e também nos dê uma estrelinha para nos ajudar a divulgar o projeto.
-
-As instruções de instalações estão no README.md de cada projeto.
 
 ## Ordem recomendada de execução
 
@@ -17,3 +11,17 @@ As instruções de instalações estão no README.md de cada projeto.
 
 ## Diagrama C4 da solução
 ![Diagrama C4](img/c4.png)
+
+
+## Conectar no kafka producer
+kafka-console-producer --bootstrap-server=localhost:9092 --topic=transactions
+
+## Conectar no kafka consumer
+kafka-console-consumer --bootstrap-server=localhost:9092 --topic=transactions_result
+
+## Exemplo de mensagem kafka para rejeição
+
+{"id":"12345","account_id":"1","credit_card_number":"1111111111111","credit_card_name":"Exemplo jhow","credit_card_expiration_month":12,"credit_card_expiration_year":2024,"credit_card_expiration_cvv":122,"amount":1200}
+
+## Exemplo de mensagem kafka para aprovação 
+{"id":"12345","account_id":"1","credit_card_number":"5307499680703280","credit_card_name":"Exemplo jhow","credit_card_expiration_month":12,"credit_card_expiration_year":2024,"credit_card_expiration_cvv":122,"amount":900}

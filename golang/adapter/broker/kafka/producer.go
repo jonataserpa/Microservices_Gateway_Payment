@@ -1,6 +1,7 @@
 package kafka
 
 import (
+	"fmt"
 	"github.com/codeedu/imersao5-gateway/adapter/presenter"
 	ckafka "github.com/confluentinc/confluent-kafka-go/kafka"
 )
@@ -11,10 +12,12 @@ type Producer struct {
 }
 
 func NewKafkaProducer(configMap *ckafka.ConfigMap, presenter presenter.Presenter) *Producer {
+	
 	return &Producer{ConfigMap: configMap, Presenter: presenter}
 }
 
 func (p *Producer) Publish(msg interface{}, key []byte, topic string) error {
+	fmt.Println("Produce msg .... ", p.ConfigMap)
 	producer, err := ckafka.NewProducer(p.ConfigMap)
 	if err != nil {
 		return err

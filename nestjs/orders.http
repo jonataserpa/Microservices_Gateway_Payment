@@ -1,21 +1,21 @@
-GET http://backend.imersao.fullcycle.com.br/orders
-x-token: nwashx2nnej
+GET http://localhost:3000/orders
+x-token: ga9klulpwqf
 
 ###
 GET http://localhost:3000/orders/75efb3c2-7ac3-4ebf-b8dd-fa89e758c6d7
 x-token: uwjv5dqrlpo
 
 ###
-POST http://backend.imersao.fullcycle.com.br/orders
+POST http://localhost:3000/orders
 Content-Type: application/json
-x-token: nwashx2nnej
+x-token: ga9klulpwqf
 
 {
-    "amount": 1.33,
-    "credit_card_number": "4485460940174065",
-    "credit_card_name": "Jhow Serpa",
+    "amount": 100,
+    "credit_card_number": "5307499680703280",
+    "credit_card_name": "Jhow Serpa 3",
     "credit_card_expiration_month": 12,
-    "credit_card_expiration_year": 2022,
+    "credit_card_expiration_year": 2024,
     "credit_card_cvv": "123"
 }
 

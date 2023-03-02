@@ -1,5 +1,4 @@
-# Imersão Fullcycle 5 - Gateway de pagamento
-![Imersão Full Stack && Full Cycle](https://events-fullcycle.s3.amazonaws.com/events-fullcycle/static/site/img/grupo_4417.png)
+# Microserviços de Gateway de pagamento
 
 
 ## Ordem recomendada de execução
